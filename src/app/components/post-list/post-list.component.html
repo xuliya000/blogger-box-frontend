@@ -1,0 +1,8 @@
+<!-- Vérification de la liste -->
+<div *ngIf="posts && posts.length > 0 ">
+    <app-post-list-item *ngFor="let post of posts" [post]="post"/>
+</div>
+
+<div *ngIf="!posts || posts.length === 0">
+    <p>No posts available.</p>
+</div>
