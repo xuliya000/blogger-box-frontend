@@ -8,6 +8,14 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../data/category';
 import Swal from 'sweetalert2';
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true
+});
+
 @Component({
   selector: 'app-post-create',
   standalone: true,
