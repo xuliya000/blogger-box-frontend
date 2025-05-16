@@ -3,14 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { Post } from "../data/post";
-import { PostCreateInput } from "../models/post";
+import { Post, PostCreationRequest } from '../models/post'; 
 import { environment } from "../environment/environment";
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root' // <-- Bonne pratique Angular
+  providedIn: 'root'
 })
 export class PostService {
 
@@ -23,15 +21,10 @@ export class PostService {
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl).pipe(
-      map(posts =>
-        posts.map(post => ({
-          ...post,
-          createdDate: new Date(post.createdDate)
-        }))
-      ),
       catchError(this.handleError<Post[]>('getPosts', []))
     );
   }
+  
 
   getPostById(id: string): Observable<Post> {
     return this.http.get<Post>(`${this.postsUrl}/${id}`).pipe(
@@ -39,8 +32,7 @@ export class PostService {
     );
   }
 
-
-  createPost(postRequest: PostCreateInput): Observable<Post> {
+  createPost(postRequest: PostCreationRequest): Observable<Post> {
     return this.http.post<Post>(this.postsUrl, postRequest).pipe(
       catchError(this.handleError<Post>('createPost'))
     );

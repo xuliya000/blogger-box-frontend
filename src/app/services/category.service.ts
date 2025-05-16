@@ -6,9 +6,11 @@ import { Category, CategoryCreateInput } from '../models/category';
 import { environment } from '../environment/environment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CategoryService {
-  private categoriesUrl = `${environment.apiUrl}v1/categories`;
+  private categoriesUrl = `${environment.apiUrl}/v1/categories`;
 
   constructor(private http: HttpClient) {}
 

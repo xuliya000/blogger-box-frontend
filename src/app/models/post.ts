@@ -12,6 +12,10 @@ export type PostCreateInput = Omit<Post, 'id' | 'createdDate'> & {
     isActive: boolean;
 };
 
+export type PostCreationRequest = Omit<Post, 'id' | 'createdDate' | 'category'> & {
+    categoryId: string;
+};
+
 const newPost: PostCreateInput = {
     title: 'Boost Your Productivity',
     content: 'Explore powerful habits and techniques to enhance your daily performance.',
